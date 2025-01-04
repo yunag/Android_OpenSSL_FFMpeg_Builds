@@ -54,7 +54,7 @@ android_options=(
 --extra-ldflags="${common_ldflags} ${android_extra_ldflags}"
 )
 
-case "$ANDROID_ABI" in
+case "${ANDROID_ABI}" in
   x86|x86_64)
     # Disabling assembler optimizations, because they have text relocations
     android_options+=(
@@ -77,8 +77,8 @@ configure_windows() {
   (set -x; ./configure "${windows_options[@]}")
 }
 
-case $TARGET_OS in
-  win)
+case "${TARGET_OS}" in
+  windows)
     configure_windows || exit 1
     ;;
   android)

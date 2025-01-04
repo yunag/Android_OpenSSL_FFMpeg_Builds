@@ -2,11 +2,11 @@
 
 cflags=
 if [ "$ANDROID_ABI" = "x86" ] ; then
-# mp3lame's configure script sets -mtune=native for i686,
-# which leads to compilation errors on Mac with arm processors,
-# because 'native' is recognized as apple-m1 processor.
-# Passing an empty mtune resets the value to default
-    cflags="-mtune="
+  # mp3lame's configure script sets -mtune=native for i686,
+  # which leads to compilation errors on Mac with arm processors,
+  # because 'native' is recognized as apple-m1 processor.
+  # Passing an empty mtune resets the value to default
+  cflags="-mtune="
 fi
 
 common_options=(
@@ -38,8 +38,8 @@ configure_windows() {
   (set -x; ./configure "${common_options[@]}")
 }
 
-case $TARGET_OS in
-  win)
+case "${TARGET_OS}" in
+  windows)
     configure_windows
     ;;
   android)

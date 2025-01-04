@@ -44,8 +44,8 @@ jobs:
         env:
           ANDROID_NDK_ROOT: ${{ env.ANDROID_SDK_ROOT }}/ndk/26.1.10909125
         run: |
-          chmod +x build-android.sh
-          ./build-android.sh --target-arch=${{ matrix.arch }}
+          chmod +x build.sh
+          ./build.sh android --target-arch=${{ matrix.arch }}
 
       - name: Prepare Artifact
         run: |
