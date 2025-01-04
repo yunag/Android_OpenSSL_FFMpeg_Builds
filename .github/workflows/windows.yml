@@ -41,7 +41,7 @@ jobs:
           chmod +x build-windows.sh
           ./build-windows.sh
 
-      - name: Upload artifacts
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           if-no-files-found: error

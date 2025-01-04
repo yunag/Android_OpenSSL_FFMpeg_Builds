@@ -49,12 +49,12 @@ jobs:
 
       - name: Prepare Artifact
         run: |
-          build_arch_dir=${{ matrix.arch }}
-          mkdir -p build/android/${{ matrix.arch }}/artifact
+          build_arch_dir=build/android/${{ matrix.arch }}
+          mkdir -p ${build_arch_dir}/artifact
           mv -v ${build_arch_dir}/openssl ${build_arch_dir}/artifact/openssl
           mv -v ${build_arch_dir}/ffmpeg ${build_arch_dir}/artifact/ffmpeg
 
-      - name: Upload artifacts
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           if-no-files-found: error
