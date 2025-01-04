@@ -15,3 +15,8 @@ jobs:
     name: Android
     uses: ./.github/workflows/android.yml
     secrets: inherit
+
+  release:
+    name: Release 
+    needs: [android, windows]
+    uses: ./.github/workflows/release.yml
