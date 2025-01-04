@@ -1,0 +1,17 @@
+name: CI
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  windows:
+    name: Windows
+    uses: ./.github/workflows/windows.yml
+    secrets: inherit
+    
+  android:
+    name: Android
+    uses: ./.github/workflows/android.yml
+    secrets: inherit
