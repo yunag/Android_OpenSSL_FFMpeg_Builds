@@ -23,10 +23,14 @@ jobs:
         with:
           path: artifacts
 
+      - name: Zip Artifacts
+        run: |
+          for file in artifacts/*; do zip "${file%.*}.zip" "$file"; done
+
       - name: Artifact Names
         id: artifact-names
         run: |
-          echo "artifact_names=$(ls -1 artifacts | awk '{ printf "%sartifacts/%s", sep, $0; sep="," }')" >> $GITHUB_OUTPUT
+          echo "artifact_names=$(ls -1 artifacts/*.zip | awk '{ printf "%s%s", sep, $0; sep="," }')" >> $GITHUB_OUTPUT
 
       - name: Create Release
         uses: ncipollo/release-action@v1
