@@ -25,7 +25,10 @@ jobs:
 
       - name: Zip Artifacts
         run: |
-          for file in artifacts/*; do zip "${file%.*}.zip" "$file"; done
+          pushd artifacts
+          # Zip without parent directory
+          for file in */; do (cd "$file"; zip -r "../${file%/}.zip" .); done
+          popd
 
       - name: Artifact Names
         id: artifact-names
