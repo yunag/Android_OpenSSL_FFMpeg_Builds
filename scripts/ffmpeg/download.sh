@@ -14,7 +14,7 @@ pushd ${git_directory}
 git reset --hard
 
 # NOTE: I intentionally checkout to master branch since it plays better with my application
-# 
+#
 # For example: avformat_open_input is faster to probe certain mp3 streams
 git checkout master
 git pull origin master

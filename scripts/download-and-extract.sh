@@ -20,7 +20,7 @@ function downloadTarArchive() {
     curl -LO ${download_url}
 
     extraction_dir="."
-    if [ "$need_extra_dIRECTORY" = true ] ; then
+    if [ "$need_extra_dIRECTORY" = true ]; then
       extraction_dir=${library_sources}
       mkdir ${extraction_dir}
     fi

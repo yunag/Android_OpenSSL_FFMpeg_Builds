@@ -6,7 +6,7 @@ function max() {
 
 export DESIRED_ANDROID_API_LEVEL=34
 
-if [ $ANDROID_ABI = "arm64-v8a" ] || [ $ANDROID_ABI = "x86_64" ] ; then
+if [ $ANDROID_ABI = "arm64-v8a" ] || [ $ANDROID_ABI = "x86_64" ]; then
   # For 64bit we use value not less than 21
   export ANDROID_PLATFORM=$(max ${DESIRED_ANDROID_API_LEVEL} 21)
 else
@@ -21,30 +21,30 @@ CPU_FAMILY=
 export TARGET_TRIPLE_OS="android"
 
 case $ANDROID_ABI in
-  armeabi-v7a)
-    #cc       armv7a-linux-androideabi16-clang
-    export TARGET_TRIPLE_MACHINE_ARCH=arm
-    target_triple_machine_cc=armv7a
-    export TARGET_TRIPLE_OS=androideabi
-    ;;
-  arm64-v8a)
-    #cc       aarch64-linux-android21-clang
-    export TARGET_TRIPLE_MACHINE_ARCH=aarch64
-    ;;
-  x86)
-    #cc       i686-linux-android16-clang
-    export TARGET_TRIPLE_MACHINE_ARCH=i686
-    CPU_FAMILY=x86
-    ;;
-  x86_64)
-    #cc       x86_64-linux-android21-clang
-    export TARGET_TRIPLE_MACHINE_ARCH=x86_64
-    ;;
-  *)
-    #cc       x86_64-linux-android21-clang
-    echo "Unknown target architecture: ${ANDROID_ABI}"
-    exit 1
-    ;;
+armeabi-v7a)
+  #cc       armv7a-linux-androideabi16-clang
+  export TARGET_TRIPLE_MACHINE_ARCH=arm
+  target_triple_machine_cc=armv7a
+  export TARGET_TRIPLE_OS=androideabi
+  ;;
+arm64-v8a)
+  #cc       aarch64-linux-android21-clang
+  export TARGET_TRIPLE_MACHINE_ARCH=aarch64
+  ;;
+x86)
+  #cc       i686-linux-android16-clang
+  export TARGET_TRIPLE_MACHINE_ARCH=i686
+  CPU_FAMILY=x86
+  ;;
+x86_64)
+  #cc       x86_64-linux-android21-clang
+  export TARGET_TRIPLE_MACHINE_ARCH=x86_64
+  ;;
+*)
+  #cc       x86_64-linux-android21-clang
+  echo "Unknown target architecture: ${ANDROID_ABI}"
+  exit 1
+  ;;
 esac
 
 # If the cc-specific variable isn't set, we fallback to binutils version
@@ -59,16 +59,16 @@ export CROSS_PREFIX_WITH_PATH=${TOOLCHAIN_PATH}/bin/llvm-
 # Exporting Binutils paths, if passing just CROSS_PREFIX_WITH_PATH is not enough
 # The FAM_ prefix is used to eliminate passing those values implicitly to build systems
 export FAM_ADDR2LINE=${CROSS_PREFIX_WITH_PATH}addr2line
-export        FAM_AR=${CROSS_PREFIX_WITH_PATH}ar
-export        FAM_AS=${CROSS_PREFIX_WITH_PATH}as
-export        FAM_NM=${CROSS_PREFIX_WITH_PATH}nm
-export   FAM_OBJCOPY=${CROSS_PREFIX_WITH_PATH}objcopy
-export   FAM_OBJDUMP=${CROSS_PREFIX_WITH_PATH}objdump
-export    FAM_RANLIB=${CROSS_PREFIX_WITH_PATH}ranlib
-export   FAM_READELF=${CROSS_PREFIX_WITH_PATH}readelf
-export      FAM_SIZE=${CROSS_PREFIX_WITH_PATH}size
-export   FAM_STRINGS=${CROSS_PREFIX_WITH_PATH}strings
-export     FAM_STRIP=${CROSS_PREFIX_WITH_PATH}strip
+export FAM_AR=${CROSS_PREFIX_WITH_PATH}ar
+export FAM_AS=${CROSS_PREFIX_WITH_PATH}as
+export FAM_NM=${CROSS_PREFIX_WITH_PATH}nm
+export FAM_OBJCOPY=${CROSS_PREFIX_WITH_PATH}objcopy
+export FAM_OBJDUMP=${CROSS_PREFIX_WITH_PATH}objdump
+export FAM_RANLIB=${CROSS_PREFIX_WITH_PATH}ranlib
+export FAM_READELF=${CROSS_PREFIX_WITH_PATH}readelf
+export FAM_SIZE=${CROSS_PREFIX_WITH_PATH}size
+export FAM_STRINGS=${CROSS_PREFIX_WITH_PATH}strings
+export FAM_STRIP=${CROSS_PREFIX_WITH_PATH}strip
 
 export TARGET=${target_triple_machine_cc}-linux-${TARGET_TRIPLE_OS}${ANDROID_PLATFORM}
 # The name for compiler is slightly different, so it is defined separately.
