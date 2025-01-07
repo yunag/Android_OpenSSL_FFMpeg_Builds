@@ -27,7 +27,7 @@ common_options=(
   --enable-openssl
   --enable-libmp3lame
   --enable-encoder=libmp3lame
-  --enable-parser=mpegaudio
+  --enable-parser=mpegaudio,aac,ac3,flac,opus,vorbis
   --enable-decoder=mp3*,aac*,ac3*,flac,opus,vorbis
   --enable-demuxer=pcm*,wav,mp3,aac,ac3,ogg,flac
   --enable-muxer=wav,mp3
