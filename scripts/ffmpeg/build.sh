@@ -83,12 +83,22 @@ configure_windows() {
   )
 }
 
+configure_linux() {
+  (
+    set -x
+    ./configure "${windows_options[@]}"
+  )
+}
+
 case "${TARGET_OS}" in
 windows)
   configure_windows || exit 1
   ;;
 android)
   configure_android || exit 1
+  ;;
+linux)
+  configure_linux || exit 1
   ;;
 esac
 

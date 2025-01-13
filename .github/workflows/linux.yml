@@ -1,0 +1,38 @@
+name: Linux
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  build-ffmpeg:
+    name: Build
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Install build dependencies
+        run: |
+          sudo apt install -y nasm
+
+      - name: Build
+        run: |
+          chmod +x build.sh
+          ./build.sh linux
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          if-no-files-found: error
+          name: linux-ffmpeg
+          path: build/linux/ffmpeg

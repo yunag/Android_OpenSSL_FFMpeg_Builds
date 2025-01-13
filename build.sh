@@ -5,7 +5,7 @@ export BASE_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 helpFunction() {
   echo "Usage: $0 <target-os> [--target-arch=ARCH]"
-  echo -e "\t<target-os>     Select target os [windows, android]"
+  echo -e "\t<target-os>     Select target os [windows, linux, android]"
   echo -e "\t--target-arch   Select target architecture [arm64-v8a, armeabi-v7a, x86, x86_64]"
   exit 1
 }
@@ -21,6 +21,9 @@ for opt in "$@"; do
     ;;
   android)
     export TARGET_OS=android
+    ;;
+  linux)
+    export TARGET_OS=linux
     ;;
   *)
     helpFunction
@@ -55,7 +58,7 @@ rm -rf ${INSTALL_DIR}
 # Treating FFmpeg as just a module to build after its dependencies
 components_to_build=("libmp3lame")
 if [[ ${TARGET_OS} == android ]]; then
-  # Don't waste time building openssl for Windows
+  # Don't waste time building openssl for Desktop
   components_to_build+=("openssl")
 fi
 components_to_build+=("ffmpeg")

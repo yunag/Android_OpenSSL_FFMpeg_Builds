@@ -30,6 +30,11 @@ android_options=(
   RANLIB="${FAM_RANLIB}"
 )
 
+linux_options=(
+  "${common_options[@]}"
+  --with-pic
+)
+
 configure_android() {
   (
     set -x
@@ -44,12 +49,22 @@ configure_windows() {
   )
 }
 
+configure_linux() {
+  (
+    set -x
+    ./configure "${linux_options[@]}"
+  )
+}
+
 case "${TARGET_OS}" in
 windows)
   configure_windows || exit 1
   ;;
 android)
   configure_android || exit 1
+  ;;
+linux)
+  configure_linux || exit 1
   ;;
 esac
 
